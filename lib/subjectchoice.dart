@@ -67,7 +67,7 @@ class _subjectchoiceState extends State<subjectchoice> {
                         ),
                         child: Center(
                           child: Text(
-                            "1",
+                            "Click me",
                             style: TextStyle(fontSize: 40),
                           ),
                         ),

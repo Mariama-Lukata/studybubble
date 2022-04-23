@@ -63,16 +63,8 @@ class _homepageState extends State<homepage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => home()));
-          },
-        ),
+         title: Text("Bubble List"),
+        centerTitle: true,
        
       ),
       backgroundColor: Colors.grey,

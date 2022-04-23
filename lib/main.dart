@@ -4,9 +4,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:studybubble/home.dart';
 import 'package:studybubble/login.dart';
+import 'package:flutter_config/flutter_config.dart';
+import 'package:studybubble/notes.dart';
 
-Future <void> main() async{
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 
@@ -18,6 +21,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Study Bubble',
@@ -56,7 +60,7 @@ class _splashPageState extends State<splashPage> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => home(),
+        builder: (context) => notes(),
       ));
     });
   }

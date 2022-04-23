@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-
+import 'package:studybubble/getQuizAPI.dart';
 import 'package:flutter/material.dart';
 import 'package:studybubble/home.dart';
 import 'package:studybubble/result.dart';
@@ -10,30 +10,30 @@ class getjson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        //add quiz Api data
-        future: DefaultAssetBundle.of(context).loadString("assets/quiz.json"),
-        builder: (context, snapshot) {
-          List mydata = json.decode(snapshot.data.toString());
-          if (mydata == null) {
-            return Scaffold(
-              body: Center(
-                child: Text("loading no data yet"),
-              ),
-            );
-          } else {
-            //fix response data
-            return quiz(
-              mydata: mydata,
-              marks: 0,
-              life: 0,
-              level: 0,
-              uid: "",
-            );
-          }
-        });
+    return Builder(
+      builder: (context) {
+        var mydata =QuizApi.getQuiz();
+              if (mydata == null) {
+                return Scaffold(
+                  body: Center(
+                    child: Text("loading no data yet"),
+                  ),
+                );
+              } else {
+                //fix response data
+                return quiz(
+                  mydata: mydata,
+                  marks: 0,
+                  life: 0,
+                  level: 0,
+                  uid: "",
+                );
+              }
+            });
+      }
+    
   }
-}
+
 
 class quiz extends StatefulWidget {
   final String uid;
@@ -132,6 +132,7 @@ class _quizState extends State<quiz> {
   }
 
   void checkanswer(String k) async {
+    
     if (click == 20) {
       if (mydata[2][i.toString()] == mydata[1][i.toString()][k]) {
         marks = marks + 5;
@@ -195,6 +196,7 @@ class _quizState extends State<quiz> {
 
   @override
   Widget build(BuildContext context) {
+    String question = mydata[i][1][2];
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -208,7 +210,7 @@ class _quizState extends State<quiz> {
             ));
           },
         ),
-        title: Text("A Quicl Quiz"),
+        title: Text("A Quick Quiz"),
         actions: [
           Text(lifes,style: TextStyle(height: 2,fontSize: 20,fontWeight: FontWeight.bold),),
           IconButton(icon: const Icon(Icons.favorite,color: Colors.orange,), onPressed: (){ },
@@ -277,7 +279,7 @@ child: Column(children: [
       margin: EdgeInsets.fromLTRB(5, 1, 5, 0),
       alignment: Alignment.center,
       child: Text(
-        mydata[0][i.toString()],
+        question,
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,

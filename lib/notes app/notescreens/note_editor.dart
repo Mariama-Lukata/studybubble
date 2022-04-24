@@ -55,6 +55,7 @@ class _NotesEditorScreenState extends State<NotesEditorScreen> {
           ),
         ]),
       ),
+      
       floatingActionButton: FloatingActionButton(
         backgroundColor: AppStyle.accentColor,
         onPressed: () async {
@@ -71,6 +72,8 @@ class _NotesEditorScreenState extends State<NotesEditorScreen> {
         },
         child: Icon(Icons.save),
       ),
+      
+    
     );
   }
 }

@@ -60,7 +60,7 @@ class _splashPageState extends State<splashPage> {
     super.initState();
     Timer(Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (context) => notes(),
+        builder: (context) => home(),
       ));
     });
   }

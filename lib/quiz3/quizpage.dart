@@ -3,7 +3,10 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:studybubble/home.dart';
 import 'package:studybubble/result.dart';
+
+import 'home.dart';
 
 
 class getjson extends StatelessWidget {
@@ -240,6 +243,19 @@ class _quizpageState extends State<quizpage> {
     SystemChrome.setPreferredOrientations(
         [DeviceOrientation.portraitDown, DeviceOrientation.portraitUp]);
     return Scaffold(
+      appBar: AppBar(leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => homepage()));
+          },
+        ),
+        title: Text("You go this!"),
+        centerTitle: true,
+      ),
       body: Column(
         children: <Widget>[
           Expanded(

@@ -6,10 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:studybubble/notes.dart';
-import 'package:studybubble/homepage.dart';
+import 'package:studybubble/quiz3/home.dart';
 import 'package:studybubble/librarySearch.dart';
-import 'package:studybubble/statistic.dart';
-
+import 'package:studybubble/result.dart';
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
 
@@ -32,7 +31,7 @@ class _homeState extends State<home> {
 // Add Notes Widget, Message a friend?, library search
 static List<Widget> _widgitOptions =<Widget> [
   homepage(),
-  statistic(),
+  homepage(),
   notes(),
   librarySearch(),
 ];
@@ -56,7 +55,7 @@ static List<Widget> _widgitOptions =<Widget> [
         height: 50.0,
 //change icons
         items: const <Widget> [
-          Icon(Icons.games, size: 30,),
+          Icon(Icons.quiz, size: 30,),
           Icon(Icons.stacked_bar_chart, size: 30,),
           Icon(Icons.note_sharp, size: 30,),
           Icon(Icons.book, size: 30,)

@@ -6,10 +6,16 @@ import 'package:studybubble/home.dart';
 import 'package:studybubble/login.dart';
 import 'package:flutter_config/flutter_config.dart';
 import 'package:studybubble/notes.dart';
+import 'package:studybubble/quiz3/home.dart';
+import 'package:studybubble/quiz3/quizpage.dart';
+
+
 
 Future<void> main() async {
+ 
   WidgetsFlutterBinding.ensureInitialized();
-
+ 
+ 
   runApp(MyApp());
 }
 

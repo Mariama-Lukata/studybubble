@@ -5,12 +5,11 @@ import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'package:studybubble/getjson.dart';
 import 'package:studybubble/notes.dart';
 import 'package:studybubble/home.dart';
-import 'package:studybubble/homepage.dart';
 import 'package:studybubble/librarySearch.dart';
-import 'package:studybubble/statistic.dart';
+
+
 
 class subjectchoice extends StatefulWidget {
   const subjectchoice({Key? key}) : super(key: key);
@@ -56,7 +55,7 @@ class _subjectchoiceState extends State<subjectchoice> {
                     child: InkWell(
                       onTap: () {
                         Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) => getjson()));
+                            MaterialPageRoute(builder: (context) => home()));
                       },
                       child: Container(
                         height: 40,

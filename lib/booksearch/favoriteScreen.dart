@@ -54,8 +54,9 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         children: <Widget>[
           Padding(
               padding: EdgeInsets.all(20.0),
-              child:
-                  (isSmall) ? BookList( books: books,isFavorite: false) : BooksTable( books: books,isFavorite: false)),
+              child: (isSmall)
+                  ? BookList(books: books, isFavorite: false)
+                  : BooksTable(books: books, isFavorite: false)),
         ],
       ),
     );
@@ -63,10 +64,10 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
   Future initialize() async {
     books = await helper.getFavorites();
+    print(books);
     setState(() {
       booksCount = books.length;
       books = books;
-      
     });
   }
 }

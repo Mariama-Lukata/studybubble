@@ -23,8 +23,10 @@ class _loginState extends State<login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+         automaticallyImplyLeading: false,
         title: Text("Welcom to Study Bubble"),
         centerTitle: true,
+        
       ),
       body: Container(
         child: SingleChildScrollView(

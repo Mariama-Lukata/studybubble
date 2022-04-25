@@ -43,12 +43,14 @@ class _homeState extends State<home> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+           automaticallyImplyLeading: false,
           title: Text("Study Bubble"),
           centerTitle: true,
           actions: [
             IconButton(
                 onPressed: () {
                   FirebaseAuth.instance.signOut().then((value) {
+
                     print("Signed Out");
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => login()));
@@ -70,11 +72,11 @@ class _homeState extends State<home> {
 //change icons
           items: const <Widget>[
             Icon(
-              Icons.quiz,
+              Icons.home,
               size: 30,
             ),
             Icon(
-              Icons.stacked_bar_chart,
+              Icons.quiz,
               size: 30,
             ),
             Icon(

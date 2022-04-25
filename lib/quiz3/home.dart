@@ -110,6 +110,7 @@ class _homepageState extends State<homepage> {
     ]);
     return Scaffold(
       appBar: AppBar(
+       //  automaticallyImplyLeading: false,
         title: Text(
           "Bubble Quiz",
           style: TextStyle(

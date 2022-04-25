@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:studybubble/home.dart';
+import 'package:studybubble/reusable_widget.dart';
+import 'package:studybubble/signup_screen.dart';
 
 class login extends StatefulWidget {
   const login({Key? key}) : super(key: key);
@@ -12,80 +16,67 @@ class login extends StatefulWidget {
 }
 
 class _loginState extends State<login> {
+  TextEditingController _passwordTextController =TextEditingController();
+  TextEditingController _usernameTextController =TextEditingController();
+  TextEditingController _emailTextController =TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Text("login"),
+         title: Text("Welcom to Study Bubble"),
         centerTitle: true,
       ),
-      body: FutureBuilder(
-          future: FirebaseFirestore.instance.collection('point').get(),
-          builder: (context, snapshot) {
-            return SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 60.0),
-                    child: Center(
-                      child: Container(
-                        width: 200,
-                        height: 150,
-                        child: Image.asset('assets/StudyBubbleLogo.jpg'),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    width: 250,
-                    height: 50,
-                    child: ElevatedButton(
-                      child: Text("START"),
-                      onPressed: () async {
-                        // checkinternetconnection();
-                        const home();
-                      },
-                    ),
-                  ),
-                  SizedBox(
-                    height: 130,
-                  )
-                ],
-              ),
-            );
-          }),
+      body: Container(
+        child: SingleChildScrollView(
+          child: Padding(padding: EdgeInsets.fromLTRB(60, MediaQuery.of(context).size.height*.1, 50, 0)
+         , child: Column(
+           children:<Widget> [
+             logoWidget("assets/StudyBubbleLogo.jpg"),
+             SizedBox(
+               height: 30,
+             ),
+             reusableTextField("Enter UserName", Icons.person_outline, false,_emailTextController )
+           ,SizedBox(
+               height: 30,
+             ),
+               reusableTextField("Enter Password", Icons.lock_outline, true,_passwordTextController )
+              ,SizedBox(
+               height: 30,
+             ),
+             signInSignUpButton(context, true, (){
+               FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailTextController.text, 
+               password: _passwordTextController.text).then((value) => {
+                 Navigator.push(context,
+                MaterialPageRoute(builder: (context) => home()))
+               });
+                
+             }) ,
+             signUpOption()
+             ],
+           
+         ),),
+        ),
+      ) ,
+    );
+  }
+ Row signUpOption() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text("Don't have account?",
+            style: TextStyle(color: Colors.black)),
+        GestureDetector(
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => SignUpScreen()));
+          },
+          child: const Text(
+            " Sign Up",
+            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+          ),
+        )
+      ],
     );
   }
 
-  void checkinternetconnection() async {
-    var result = await Connectivity().checkConnectivity();
-    if (result == ConnectivityResult.none) {
-      _showDialoge("No internet", "You'er not connected to a network");
-      Navigator.push(context, MaterialPageRoute(builder: (_) => home()));
-    } else if (result == ConnectivityResult.mobile) {
-      _showDialoge(" internet", "You'er connected over mobile data");
-      Navigator.push(context, MaterialPageRoute(builder: (_) => home()));
-    } else if (result == ConnectivityResult.mobile) {
-      _showDialoge(" internet", "You'er connected over mobile data");
-      Navigator.push(context, MaterialPageRoute(builder: (_) => home()));
-    }
-  }
-
-  _showDialoge(title, text) {
-    showDialog(
-        context: context,
-        builder: (context) {
-          return AlertDialog(
-            title: Text(title),
-            content: Text(title),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('ok'))
-            ],
-          );
-        });
-  }
 }

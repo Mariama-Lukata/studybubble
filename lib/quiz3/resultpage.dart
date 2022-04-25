@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:studybubble/quiz3/home.dart';
-//import 'package:quizstar/home.dart';
+
 
 class resultpage extends StatefulWidget {
   int marks;

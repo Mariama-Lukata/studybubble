@@ -1,10 +1,11 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:studybubble/login.dart';
 import 'package:studybubble/notes.dart';
 import 'package:studybubble/quiz3/home.dart';
 import 'package:studybubble/librarySearch.dart';
@@ -41,8 +42,17 @@ static List<Widget> _widgitOptions =<Widget> [
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Bubble Quiz"),
+        title: Text("Study Bubble"),
         centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {
+             FirebaseAuth.instance.signOut().then((value) {
+              print("Signed Out");
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => login()));
+            });
+            }, icon: Icon(Icons.logout))
+        ],
       ),
     body: Scrollbar(child: 
     Center(

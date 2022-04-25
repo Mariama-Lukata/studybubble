@@ -41,7 +41,7 @@ class getjson extends StatelessWidget {
     // and now we return the FutureBuilder to load and decode JSON
     return FutureBuilder(
       future:
-          DefaultAssetBundle.of(context).loadString("assets/python.json"),
+          DefaultAssetBundle.of(context).loadString(assettoload),
       builder: (context, snapshot) {
        List mydata = json.decode(snapshot.data.toString());
    if (mydata == null) {

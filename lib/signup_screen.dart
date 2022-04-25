@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studybubble/home.dart';
+import 'package:studybubble/login.dart';
 import 'package:studybubble/reusable_widget.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -76,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   .then((value) {
                 print("sign up successfull");
                 Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => home()));
+                    context, MaterialPageRoute(builder: (context) => login()));
               }).onError((error, stackTrace) {
                 createAlertDialog(context,
                     "Incorrect,Passwords must be at least 6 characters");

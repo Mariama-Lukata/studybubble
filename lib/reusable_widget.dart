@@ -1,38 +1,45 @@
-
-
 import 'package:flutter/material.dart';
+import 'package:studybubble/login.dart';
 
-Image logoWidget(String imagename){
+Image logoWidget(String imagename) {
   return Image.asset(
     imagename,
-    fit:BoxFit.fitWidth,
+    fit: BoxFit.fitWidth,
     width: 240,
     height: 240,
   );
 }
 
-TextField reusableTextField(String text,IconData icon,
- bool isPasswordType ,TextEditingController controller ){
- return TextField(controller: controller,
- obscureText: isPasswordType,
- enableSuggestions: !isPasswordType,
- autocorrect: !isPasswordType,
- cursorColor: Colors.lightGreenAccent,
- style: TextStyle(color: Colors.black),
- decoration: InputDecoration(prefixIcon: Icon(icon,color: Colors.black, ),
- labelText: text,
- labelStyle: TextStyle(color: Colors.black),
- filled: true,
- floatingLabelBehavior: FloatingLabelBehavior.never,
- fillColor: Colors.lightGreen.withOpacity(.3),
- border: OutlineInputBorder(borderRadius: BorderRadius.circular(30),
- )),
- keyboardType: isPasswordType ? TextInputType.visiblePassword:TextInputType.emailAddress,
- );
- 
+TextField reusableTextField(String text, IconData icon, bool isPasswordType,
+    TextEditingController controller) {
+  return TextField(
+    controller: controller,
+    obscureText: isPasswordType,
+    enableSuggestions: !isPasswordType,
+    autocorrect: !isPasswordType,
+    cursorColor: Colors.lightGreenAccent,
+    style: TextStyle(color: Colors.black),
+    decoration: InputDecoration(
+        prefixIcon: Icon(
+          icon,
+          color: Colors.black,
+        ),
+        labelText: text,
+        labelStyle: TextStyle(color: Colors.black),
+        filled: true,
+        floatingLabelBehavior: FloatingLabelBehavior.never,
+        fillColor: Colors.lightGreen.withOpacity(.3),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(30),
+        )),
+    keyboardType: isPasswordType
+        ? TextInputType.visiblePassword
+        : TextInputType.emailAddress,
+  );
 }
+
 Container signInSignUpButton(
- BuildContext context, bool isLogin, Function onTap){
+    BuildContext context, bool isLogin, Function onTap) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -43,7 +50,7 @@ Container signInSignUpButton(
         onTap();
       },
       child: Text(
-        isLogin? 'LOG IN':'SIGNUP',
+        isLogin ? 'LOG IN' : 'SIGNUP',
         style: const TextStyle(
             color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16),
       ),
@@ -58,4 +65,24 @@ Container signInSignUpButton(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),
     ),
   );
+}
+
+createAlertDialog(BuildContext context, String issue) {
+  return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text("Uh Oh"),
+          content: Text("The field data is: $issue"),
+          actions: <Widget>[
+            MaterialButton(
+              elevation: 5.0,
+              child: Text("close"),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      });
 }

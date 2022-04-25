@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:studybubble/booksearch/favoriteScreen.dart';
 import 'package:studybubble/booksearch/ui.dart';
+import 'package:studybubble/reusable_widget.dart';
 
 class librarySearch extends StatefulWidget {
   const librarySearch({Key? key}) : super(key: key);
@@ -68,8 +69,9 @@ class _librarySearchState extends State<librarySearch> {
                 width: 230,
                 child: TextField(
                  decoration: const InputDecoration.collapsed(
-                    hintText: 'Search Book',
+                    hintText: 'Search for a Book',
                     border: UnderlineInputBorder() ,
+                   
                     
                     
                     

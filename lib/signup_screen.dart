@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:studybubble/home.dart';
@@ -49,17 +50,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
             const SizedBox(
               height: 20,
             ),
-            signInSignUpButton(context, false, () {
+            signInSignUpButton(context, false, () async {
+              if (_emailTextController.text.isEmpty ||
+                  _passwordTextController.text.isEmpty ||
+                  _userNameTextController.text.isEmpty) {
+                createAlertDialog(context, "Empty");
+              }
+              User? user = FirebaseAuth.instance.currentUser;
+              await FirebaseFirestore.instance
+                  .collection("user")
+                  .doc()
+                  .set({
+              
+                "email": _emailTextController.text,
+                "password": _passwordTextController.text,
+                "username": _userNameTextController.text
+              }).onError((error, stackTrace) {
+                   createAlertDialog(context,
+                    "Incorrect,Passwords must be at least 6 characters");
+              });
               FirebaseAuth.instance
                   .createUserWithEmailAndPassword(
                       email: _emailTextController.text,
                       password: _passwordTextController.text)
                   .then((value) {
-                     print("sign up successfull");
+                print("sign up successfull");
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => home()));
               }).onError((error, stackTrace) {
-                print("Error ${error.toString()}");
+                createAlertDialog(context,
+                    "Incorrect,Passwords must be at least 6 characters");
               });
             })
           ],
